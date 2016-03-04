@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBCVersion>1.0.1</RBCVersion>
+
+<Platform></Platform>
+
+<CompilerMode>Real</CompilerMode>
+
+<MenuLevel>Basic</MenuLevel>
+
+<CompileAndDownload>NO</CompileAndDownload>
+
+<SourceFileName>NewProgram.c</SourceFileName>
+
+<NaturalLanguageFlag>False</NaturalLanguageFlag>
+
+<DebuggerWindows></DebuggerWindows>
+
+<SourceCode>task main {
+motor[motorA] = 100;
+wait1Msec(1000);
+}
+</SourceCode>

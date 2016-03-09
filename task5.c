@@ -1,33 +1,32 @@
-#include "boilerplate.h"
+#include "init.c"
 
-int getSLEncoderCount (int distance);
-void dropBins ();
+void dropBins();
+
 task main()
 {
 	 init();
 
 	 //nSyncedTurnRatio = DRIVE_STRAIGHT;
-	 nMotorEncoderTarget[motorB] = 100; // getSLEncoderCount
-	 motor[motorB] = getSLEncoderCount(100);
-	 waitUntilMotorStop(motorB);
+	 nMotorEncoderTarget[motorB] = getSLEncoderCount(100); // getSLEncoderCount
+	 motor[motorB] = 100;
+	 //wait1Msec(10000);
+	 waitUntilStopped(motorB);
+	 motor[motorB] = 0;
 
 	 dropBins();
 
-	 motor[motorB] = getSLEncoderCount(-30);
-	 waitUntilMotorStop(motorB);
+	 nMotorEncoderTarget[motorB] = getSLEncoderCount(10);
+	 motor[motorB] = -100;
+	 //wait1Msec(10000);
+	 waitUntilStopped(motorB);
+	 motor[motorB] = 0;
 
 }
-
-int getSLEncoderCount (int distance) {
-   int ret;
-   ret = distance * ENCODER_COUNT_PER_ROTATION;
-
-   return ret;
- }
 
 void dropBins () {
 	motor[motorA] = MOTOR_A_POWER;
   wait1Msec(5000);
+  motor[motorA] = 0;
 
 
 }

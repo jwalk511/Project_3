@@ -3,9 +3,9 @@
 
 
 task main() {
-	//Slave C to B
-	nSyncedMotors = synchBC;
-	nSyncedTurnRatio = DRIVE_STRAIGHT;
+	
+	
+	
 
 	motor[motorB] = 50;
 	motor[motorA] = 20;

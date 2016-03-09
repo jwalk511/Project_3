@@ -1,7 +1,7 @@
 #pragma config(Sensor, S4, sonarSensor, sensorSonar)
 #include "boilerplate.h"
 
-
+/*
 task main() {
 	
 	
@@ -11,6 +11,7 @@ task main() {
 	motor[motorA] = 20;
 	wait1Msec(10000);
 }
+*/
 
 void resetCount (int motorNum) {
 	nMotorEncoder[motorNum] = 0;

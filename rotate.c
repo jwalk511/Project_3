@@ -1,11 +1,10 @@
 #pragma config(Sensor, S4, sonarSensor, sensorSonar)
-#include "boilerplate.h"
-
+//#include "boilerplate.c"
+#include "init.c"
 int getSpinEncoderCount(int degrees);
 
 task main() {
-	//Slave C to B
-	nSyncedMotors = synchBC;
+	init();
 
 	// Rotate 30 degrees
 	nSyncedTurnRatio = SPIN_CLOCKWISE;
@@ -13,8 +12,8 @@ task main() {
     nMotorEncoderTarget[motorB] = getSpinEncoderCount(30);
 	motor[motorB] = 50;
 
-    waitUntilMotorStop(motorB);
-
+    waitUntilStopped(motorB);
+   getSLEncoderCount(10);
     // Move in a straight line
     nSyncedTurnRatio = DRIVE_STRAIGHT;
     motor[motorB] = 100;

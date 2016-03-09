@@ -7,7 +7,8 @@
 //
 
 //#include <stdio.h>
-#include "boilerplate.h"
+#include "boilerplate.c"
+//#include "init.h"
 
 void init() {
     //Slave C to B

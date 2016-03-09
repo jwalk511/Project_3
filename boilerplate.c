@@ -17,11 +17,14 @@ task main () {
     nSyncedTurnRatio = DRIVE_STRAIGHT;
     nMotorEncoderTarget[motorB] = getSLEncoderCount(30);
     motor[motorB] = 50;
-    
+
     waitUntilMotorStop(motorB);
-} 
-#endif
- 
-int getSLEncoderCount (int distance) {
-    return ENCODER_COUNT_PER_CM * distance;
 }
+#endif
+
+int getSLEncoderCount (int distance) {
+   int ret;
+   ret = distance * ENCODER_COUNT_PER_ROTATION;
+
+   return ret;
+ }

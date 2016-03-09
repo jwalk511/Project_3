@@ -1,5 +1,6 @@
 #ifndef boilerplate
 #define boilerplate
+#include "boilerplate.c"
 
 //Use with
 #define DRIVE_STRAIGHT +100

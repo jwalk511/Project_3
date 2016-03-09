@@ -3,9 +3,9 @@
 
 
 /*task main() {
-	
-	
-	
+
+
+
 
 	motor[motorB] = 50;
 	motor[motorA] = 20;

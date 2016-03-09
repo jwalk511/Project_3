@@ -2,21 +2,24 @@
 #include "boilerplate.h"
 
 
-/*task main() {
-
-
-
-
-	motor[motorB] = 50;
-	motor[motorA] = 20;
-	wait1Msec(10000);
-}
-*/
-
 void resetCount (int motorNum) {
 	nMotorEncoder[motorNum] = 0;
 }
 
 void waitUntilStopped (int motorNum) {
 	while (nMotorRunState[motorNum] == runStateRunning){};
+}
+int getSLEncoderCount (int distance);
+
+task main () {
+    nSyncedMotors = synchBC;
+    nSyncedTurnRatio = DRIVE_STRAIGHT;
+    nMotorEncoderTarget[motorB] = getSLEncoderCount(30);
+    motor[motorB] = 50;
+    
+    waitUntilMotorStop(motorB);
+}
+    
+int getSLEncoderCount (int distance) {
+    return ENCODER_COUNT_PER_CM;
 }

@@ -6,6 +6,7 @@
 #define DRIVE_STRAIGHT +100
 #define SPIN_CLOCKWISE -100
 
+#define ENCODER_COUNT_PER_ROTATION 1975
 
 //reset tick count to 0
 void resetCount (int motorNum);

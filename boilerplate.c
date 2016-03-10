@@ -1,17 +1,22 @@
 #pragma config(Sensor, S4, sonarSensor, sensorSonar)
 #include "boilerplate.h"
 
-/*
-task main() {
-	
-	
-	
 
-	motor[motorB] = 50;
-	motor[motorA] = 20;
-	wait1Msec(10000);
+#if RUN_MAIN
+task main () {
+    nSyncedMotors = synchBC;
+    nSyncedTurnRatio = DRIVE_STRAIGHT;
+    nMotorEncoderTarget[motorB] = getSLEncoderCount(30);
+    motor[motorB] = 50;
+
+    waitUntilStopped(motorB);
 }
-*/
+#endif
+
+int getSLEncoderCount (int distance) {
+   return distance * ENCODER_COUNT_PER_M;
+}
+
 
 void resetCount (int motorNum) {
 	nMotorEncoder[motorNum] = 0;

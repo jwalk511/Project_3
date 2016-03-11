@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 //  init.c
 //
@@ -18,3 +19,25 @@ void init() {
     nSyncedMotors = synchBC;
     //nSyncedTurnRatio = DRIVE_STRAIGHT;
 }
+=======
+//
+//  init.c
+//
+//
+//  Created by Joshua on 3/8/16.
+//
+//
+
+//#include <stdio.h>
+#include "boilerplate.c"
+//#include "init.h"
+//testbreak
+void init() {
+	resetCount(motorA);
+	resetCount(motorB);
+	resetCount(motorC);
+    //Slave C to B
+    nSyncedMotors = synchBC;
+    //nSyncedTurnRatio = DRIVE_STRAIGHT;
+}
+>>>>>>> 5bce6e2c9158fe9f72a3f3c83208f193e28d973a

@@ -1,6 +1,7 @@
 #pragma config(Sensor, S4, sonarSensor, sensorSonar)
 #include "boilerplate.h"
 
+
 #if RUN_MAIN
 task main () {
     nSyncedMotors = synchBC;
@@ -12,10 +13,10 @@ task main () {
 }
 #endif
 
-
 int getSLEncoderCount (int distance) {
    return distance * ENCODER_COUNT_PER_M;
 }
+
 
 void resetCount (int motorNum) {
 	nMotorEncoder[motorNum] = 0;

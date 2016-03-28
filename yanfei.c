@@ -1,4 +1,4 @@
 task main()
 {
-mortor[50]
+motor[motorA] = 50;
 }

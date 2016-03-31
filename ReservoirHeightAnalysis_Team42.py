@@ -32,11 +32,6 @@ clearCost = 0.25
 #Volume of water to hold
 #No Error checking
 volume = float(input("Please input the volume of the reservoir: "))
-<<<<<<< HEAD
-
-=======
-#xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
->>>>>>> b0cd861f7ce6337969428a5c971acd324960dbd3
 
 #Corresponding surface areas for each height
 #Surface area = volume / height

@@ -64,6 +64,9 @@ for height in heightCosts:
     print("height=" , height , "\tCost of clearing land=", end = "")
     print(round(clearCosts[height], 1), "Wall=",wallCosts[height])
 
+for height in heightCosts:
+    print(height, "\t", clearCosts[height] + wallCosts[height])
+
 print()
 
 

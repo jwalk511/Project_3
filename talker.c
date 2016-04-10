@@ -33,33 +33,40 @@ task main()
 
 void coords(int height) {
 	int error;
-
+    int counter = 0;
 	sendMessage(HEIGHT);
 
 	do {
+        counter++;
+        if (counter > 5000 / 20) {
+            counter = 0;
+            sendMessage(HEIGHT);
+        }
+        
 		error = messageParm[0];
 		parseError(error);
-	if (DEBUG) {
-		printErrors();
-	}
+        if (DEBUG) {
+            printErrors();
+        }
 
-		nxtDisplayBigTextLine(2, "%d", error);
+		nxtDisplayBigTextLine(1, "%d", error);
 		if (error == 0) {
 			nxtDisplayTextLine(2, "Waiting for message...");
 			wait1Msec(100);
-			} else if (errors[0] || errors[1] || errors[2]) {
+        } else if (errors[0] || errors[1] || errors[2]) {
 			Read(&(coordinates[0]), &(coordinates[1]));
 			nxtDisplayBigTextLine(2, "%d, %d", coordinates[0], coordinates[1]);
 			int line = 0;
 			if (errors[0]) nxtDisplayTextLine(3 + line++, "No Error");
 			if (errors[1]) nxtDisplayTextLine(3 + line++, "Manual Override");
 			if (errors[2]) nxtDisplayTextLine(3 + line++, "Out of Bounds");
-			} else {
+        } else {
 			int line = 0;
 			if (errors[3]) nxtDisplayTextLine(3 + line++, "No ALV Marker Seen");
 			if (errors[4]) nxtDisplayTextLine(3 + line++, "LSTS System Error");
 			if (errors[5]) nxtDisplayTextLine(3 + line++, "Busy-Request again later");
 		}
+        wait1Msec(20);
 	} while (error == 0);
 }
 

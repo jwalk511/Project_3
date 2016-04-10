@@ -4,7 +4,8 @@ clc;
 clear;
  
 %% Define variables
-% J
+
+% Joules
 energy_Out = 4.32e11;
 % m/s^2
 gravity = 9.81;

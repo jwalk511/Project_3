@@ -1,6 +1,10 @@
 #ifndef init_h
 #define init_h
-#include "init.c"
+
 void init();
+
+#include "boilerplate.c"
+#include "init.c"
+
 //
 #endif

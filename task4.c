@@ -19,10 +19,12 @@ void findBeacon () {
     PlaySound (soundBeepBeep);
     PlaySound (soundBeepBeep);
     PlaySound (soundBeepBeep);
-        
+    
+    //Drop bins    
     dropBins();
     wait1MSec (1000);
     
+    //Back up to original position
     nMotorEncoderTarget[motorB] = getSLEncoderCount(-50);
     motor[motorB] = -100;
  

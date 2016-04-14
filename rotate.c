@@ -2,6 +2,7 @@
 #include "init.c"
 int getSpinEncoderCount(int degrees);
 
+#if ROTATE_MAIN
 task main() {
 	init();
 
@@ -19,6 +20,7 @@ task main() {
     wait1Msec(10000);
 
 }
+#endif
 
 // Encoder counts for 30 degree rotation
 int getSpinEncoderCount(int degrees) {

@@ -23,4 +23,10 @@ void waitUntilStopped(int motorNum);
 
 int getSLEncoderCount (int distance);
 
+void driveStraight(int distance);
+
+int getSpinEncoderCount(int degrees);
+
+int turnRight(int degrees);
+
 #endif

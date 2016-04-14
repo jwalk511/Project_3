@@ -1,11 +1,11 @@
 #define HEIGHT 5
-#define DEBUG 1
+#define DEBUG 0
 
 void coords(int height);
 void Read(int* x, int* y);
 void parseError(int error);
 void printErrors();
-int * getPos();
+void getPos(int * coords);
 void getDirectionVector(int* x, int* y);
 int getDirection();
 bool gotCoords = false;
@@ -109,10 +109,16 @@ void printErrors() {
 	wait1Msec(1000);
 }
 
-int * getPos() {
+void getPos(int * coords) {
 	gotCoords =  false;
-	while(!gotCoords) {wait1Msec(20);}
-	return coordinates;
+	while(!gotCoords) {
+		wait1Msec(20);
+		nxtDisplayTextLine(3, "Waiting to get position");
+	}
+
+	nxtDisplayTextLine(4, "Got coordinates %d %d", coordinates[0], coordinates[1]);
+	coords[0] = coordinates[0];
+	coords[1] = coordinates[1];
 }
 
 void getDirectionVector(int* x, int* y) {

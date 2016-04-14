@@ -15,29 +15,35 @@ task main()
 	turnRight(90);
 
 	do {
-		coor = getPos();
+		getPos(coor);
 		x = coor[0];
+		nxtDisplayTextLine(4, "%d", x);
+		wait1Msec(1000);
 		y = coor[1];
-		dist = y - 10;
+		dist = coor[1] - 15;
+		nxtDisplayTextLine(5, "dist = %d", dist);
+		wait1Msec(1000);
 		driveStraight(dist);
 		distone = distone + dist;
-	} while (y >= 10);
+	} while (coor[1] >= 15);
 
+	wait1Msec(1000);
 	turnRight(-90);
+	wait1Msec(1000);
 
 	do {
-		coor = getPos();
+		getPos(coor);
 		x = coor[0];
 		y = coor[1];
 		dist = 135 - x;
 		driveStraight(dist);
 		disttwo = disttwo + dist;
-	} while (x <= 135);
+	} while (coor[0] <= 135);
 
 	turnRight(-90);
 
 	do {
-		coor = getPos();
+		getPos(coor);
 		x = coor[0];
 		y = coor[1];
 		dist = 75 - x;

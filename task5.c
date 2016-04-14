@@ -24,7 +24,7 @@ task main()
 }
 
 void dropBins () {
-	motor[motorA] = MOTOR_A_POWER;
+  motor[motorA] = MOTOR_A_POWER;
   wait1Msec(5000);
   motor[motorA] = 0;
 

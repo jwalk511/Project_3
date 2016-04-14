@@ -4,16 +4,9 @@
 
 #if RUN_MAIN
 task main () {
-<<<<<<< HEAD
-    nSyncedMotors = synchBC;
-    nSyncedTurnRatio = DRIVE_STRAIGHT;
-    nMotorEncoderTarget[motorB] = getSLEncoderCount(3);
-    motor[motorB] = 50;
-=======
     driveStraight(1);
     turnRight(90);
     turnRight(-90);
->>>>>>> a464d6b25055e71cf754d7d4cff46ea43b42d7f3
 
     waitUntilStopped(motorB);
 }
@@ -52,9 +45,5 @@ void resetCount (int motorNum) {
 }
 
 void waitUntilStopped (int motorNum) {
-<<<<<<< HEAD
-	while (nMotorRunState[motorNum] == runStateRunning){wait1Msec(20);}
-=======
     while (nMotorRunState[motorNum] == runStateRunning){wait1Msec(20);}
->>>>>>> a464d6b25055e71cf754d7d4cff46ea43b42d7f3
 }

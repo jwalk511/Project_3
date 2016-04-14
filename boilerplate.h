@@ -3,7 +3,7 @@
 //#include "init.h"
 #define MOTOR_A_POWER 17
 
-#define RUN_MAIN 1
+#define RUN_MAIN 0
 
 //Use with
 #define DRIVE_STRAIGHT +100

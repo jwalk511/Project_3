@@ -18,9 +18,8 @@ static int prevDirection;
 static int prevVector[2];
 
 
-task main()
+task talk()
 {
-
 	sendMessage(0);
 	ClearMessage();
 
@@ -91,13 +90,13 @@ void parseError(int error) {
 }
 
 void printErrors() {
-	int i = 0;
-	nxtDisplayTextLine(i, "Error %d = %d", errors[i++]);
-	nxtDisplayTextLine(i, "Error %d = %d", errors[i++]);
-	nxtDisplayTextLine(i, "Error %d = %d", errors[i++]);
-	nxtDisplayTextLine(i, "Error %d = %d", errors[i++]);
-	nxtDisplayTextLine(i, "Error %d = %d", errors[i++]);
-	nxtDisplayTextLine(i, "Error %d = %d", errors[i++]);
+	int i = 1;
+	nxtDisplayTextLine(1 + i, "Error %d = %d", i, errors[i++]);
+	nxtDisplayTextLine(1 + i, "Error %d = %d", i, errors[i++]);
+	nxtDisplayTextLine(1 + i, "Error %d = %d", i, errors[i++]);
+	nxtDisplayTextLine(1 + i, "Error %d = %d", i, errors[i++]);
+	nxtDisplayTextLine(1 + i, "Error %d = %d", i, errors[i++]);
+	nxtDisplayTextLine(1 + i, "Error %d = %d", i, errors[i++]);
 	wait1Msec(1000);
 }
 
@@ -127,10 +126,13 @@ int getDirection() {
 		if (delY == 0) return prevDirection;
 		else if (delY > 0) prevDirection = 90;
 		else if (delY < 0) prevDirection = 270;
-		} else if(delY == 0) {
+		return prevDirection;
+	} else if(delY == 0) {
 		if (delX > 0) prevDirection = 0;
 		else if (delX < 0) prevDirection = 270;
+		return prevDirection;
 	}
 
-	return atan(1.0*delY / delX);
+	prevDirection = atan(1.0*delY / delX);
+	return prevDirection;
 }

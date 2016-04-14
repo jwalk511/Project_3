@@ -5,6 +5,7 @@ void init();
 
 #include "boilerplate.c"
 #include "init.c"
+#include "talker.c"
 
 //
 #endif

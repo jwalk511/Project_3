@@ -1,4 +1,4 @@
-#include "moveforward.h"
+#include "init.h"
 
 task main()
 {
@@ -6,6 +6,7 @@ task main()
 
 	int coor[2];
 	int x = 20;
+	int y = 20;
 	int dist = 0;
 	int distone = 0;
 	int disttwo = 0;
@@ -36,7 +37,7 @@ task main()
 	turnRight(-90);
 
 	do {
-		coor = getPos;
+		coor = getPos();
 		x = coor[0];
 		y = coor[1];
 		dist = 75 - x;

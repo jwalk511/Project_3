@@ -17,9 +17,8 @@ void init() {
     //Slave C to B
     nSyncedMotors = synchBC;
     //nSyncedTurnRatio = DRIVE_STRAIGHT;
-    StartTask(talk);
+    startTask(talk);
     wait1Msec(100);
-    
-    
-}
 
+
+}

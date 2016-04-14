@@ -9,7 +9,7 @@
 #define DRIVE_STRAIGHT +100
 #define SPIN_CLOCKWISE -100
 
-#define ENCODER_COUNT_PER_ROTATION 1975
+#define ENCODER_COUNT_PER_ROTATION 1945
 
 //Ticks per Rotation(motor) * (Rotations(motor) / rotations(wheel)) * (Rotations(wheel) / Circumference)
 //= Ticks / Distance Travelled
@@ -30,6 +30,6 @@ void driveStraight(int distance);
 
 int getSpinEncoderCount(int degrees);
 
-int turnRight(int degrees);
+void turnRight(int degrees);
 
 #endif

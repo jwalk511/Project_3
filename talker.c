@@ -8,7 +8,7 @@ void printErrors();
 int * getPos();
 void getDirectionVector(int* x, int* y);
 int getDirection();
-
+bool gotCoords = false;
 
 static int coordinates[2];
 static int prevCoordinates[2];
@@ -59,16 +59,17 @@ void coords(int height) {
 		nxtDisplayTextLine(1, "%d", error);
 		if (errors[0] || errors[1] || errors[2]) {
 			Read(&(coordinates[0]), &(coordinates[1]));
+			gotCoords = true;
 			nxtDisplayTextLine(2, "x, y = %d, %d", coordinates[0], coordinates[1]);
 
-            
+
 #if DEBUG
             int line = 0;
 			if (errors[0]) nxtDisplayTextLine(3 + line++, "No Error");
 			if (errors[1]) nxtDisplayTextLine(3 + line++, "Manual Override");
 			if (errors[2]) nxtDisplayTextLine(3 + line++, "Out of Bounds");
 #endif
-            
+
     } else {
 #if DEBUG
             int line = 0;
@@ -76,7 +77,7 @@ void coords(int height) {
 			if (errors[4]) nxtDisplayTextLine(3 + line++, "LSTS System Error");
 			if (errors[5]) nxtDisplayTextLine(3 + line++, "Busy-Request again later");
 #endif
-        
+
 		}
 	} while (error == 0);
 }
@@ -109,6 +110,8 @@ void printErrors() {
 }
 
 int * getPos() {
+	gotCoords =  false;
+	while(!gotCoords) {wait1Msec(20);}
 	return coordinates;
 }
 

@@ -4,7 +4,8 @@
 
 #if RUN_MAIN
 task main () {
-    driveStraight(1);
+		nSyncedMotors = synchBC;
+    driveStraight(100);
     turnRight(90);
     turnRight(-90);
 
@@ -25,7 +26,7 @@ int getSpinEncoderCount(int degrees) {
 void driveStraight(int distance) {
     resetCount(motorB);
     nSyncedTurnRatio = DRIVE_STRAIGHT;
-    nMotorEncoderTarget[motorB] = getSpinEncoderCount(distance);
+    nMotorEncoderTarget[motorB] = getSLEncoderCount(distance);
     motor[motorB] = 50;
     waitUntilStopped(motorB);
     wait1Msec(20);
@@ -34,7 +35,7 @@ void driveStraight(int distance) {
 void turnRight(int degrees) {
     resetCount(motorB);
     nSyncedTurnRatio = SPIN_CLOCKWISE;
-    nMotorEncoderTarget[motorB] = getSLEncoderCount(degrees);
+    nMotorEncoderTarget[motorB] = getSpinEncoderCount(degrees);
     motor[motorB] = 50 * sgn(degrees);
     waitUntilStopped(motorB);
     wait1Msec(20);
@@ -46,4 +47,5 @@ void resetCount (int motorNum) {
 
 void waitUntilStopped (int motorNum) {
     while (nMotorRunState[motorNum] == runStateRunning){wait1Msec(20);}
+    wait1Msec(500);
 }

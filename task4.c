@@ -23,8 +23,11 @@ void findBeacon () {
     dropBins();
     wait1MSec (1000);
     
-    nMotorEncoderTarget[motorB] = getSLEncoderCount(-50);
-    motor[motorB] = -100;
+    turnRight(180);
+    driveStraight(48);
+    
+    //nMotorEncoderTarget[motorB] = getSLEncoderCount(-50);
+    //motor[motorB] = -100;
  
     waitUntilStopped(motorB);
 }

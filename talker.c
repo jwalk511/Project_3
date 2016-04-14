@@ -59,16 +59,24 @@ void coords(int height) {
 		nxtDisplayTextLine(1, "%d", error);
 		if (errors[0] || errors[1] || errors[2]) {
 			Read(&(coordinates[0]), &(coordinates[1]));
-			nxtDisplayBigTextLine(2, "%d, %d", coordinates[0], coordinates[1]);
-			int line = 0;
+			nxtDisplayTextLine(2, "x, y = %d, %d", coordinates[0], coordinates[1]);
+
+            
+#if DEBUG
+            int line = 0;
 			if (errors[0]) nxtDisplayTextLine(3 + line++, "No Error");
 			if (errors[1]) nxtDisplayTextLine(3 + line++, "Manual Override");
 			if (errors[2]) nxtDisplayTextLine(3 + line++, "Out of Bounds");
+#endif
+            
     } else {
-			int line = 0;
+#if DEBUG
+            int line = 0;
 			if (errors[3]) nxtDisplayTextLine(3 + line++, "No ALV Marker Seen");
 			if (errors[4]) nxtDisplayTextLine(3 + line++, "LSTS System Error");
 			if (errors[5]) nxtDisplayTextLine(3 + line++, "Busy-Request again later");
+#endif
+        
 		}
 	} while (error == 0);
 }

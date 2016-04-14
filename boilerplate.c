@@ -20,7 +20,7 @@ task main () {
 #endif
 
 int getSLEncoderCount (int distance) {
-   return distance * ENCODER_COUNT_PER_M;
+   return distance * ENCODER_COUNT_PER_CM;
 }
 
 // Encoder counts for degree rotation

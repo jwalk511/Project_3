@@ -18,9 +18,8 @@ static int prevDirection;
 static int prevVector[2];
 
 
-task main()
+task talk()
 {
-
 	sendMessage(0);
 	ClearMessage();
 

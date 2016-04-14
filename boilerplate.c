@@ -6,7 +6,7 @@
 task main () {
     nSyncedMotors = synchBC;
     nSyncedTurnRatio = DRIVE_STRAIGHT;
-    nMotorEncoderTarget[motorB] = getSLEncoderCount(30);
+    nMotorEncoderTarget[motorB] = getSLEncoderCount(3);
     motor[motorB] = 50;
 
     waitUntilStopped(motorB);
@@ -23,5 +23,5 @@ void resetCount (int motorNum) {
 }
 
 void waitUntilStopped (int motorNum) {
-	while (nMotorRunState[motorNum] == runStateRunning){};
+	while (nMotorRunState[motorNum] == runStateRunning){wait1Msec(20);}
 }

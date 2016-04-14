@@ -3,7 +3,7 @@
 //#include "init.h"
 #define MOTOR_A_POWER 17
 
-#define RUN_MAIN 0
+#define RUN_MAIN 1
 
 //Use with
 #define DRIVE_STRAIGHT +100
@@ -11,7 +11,10 @@
 
 #define ENCODER_COUNT_PER_ROTATION 1975
 
-#define ENCODER_COUNT_PER_M 2000
+//Ticks per Rotation(motor) * (Rotations(motor) / rotations(wheel)) * (Rotations(wheel) / Circumference)
+//= Ticks / Distance Travelled
+//Best experimental guess = 2000
+#define ENCODER_COUNT_PER_M (360 * 40 / (24 * 0.255))
 //we still need to figure this out
 
 //reset tick count to 0

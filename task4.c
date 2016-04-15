@@ -1,17 +1,21 @@
 #pragma config(Sensor, S1, Magnetic, sensorAnalog)
 #include "init.h"
-
+#define DIST_TO_SEARCH 2
 void findBeacon();
 
 task main() {
+		init();
     driveStraight (50);
     findBeacon ();
 }
 
     // Find beacons
 void findBeacon () {
-    while (sensorValue(Magnetic) <= 900) {
-        driveStraight (3);
+	int counter = 0;
+    while (sensorValue(Magnetic) <= 500) {
+        driveStraight (DIST_TO_SEARCH);
+        counter += DIST_TO_SEARCH;
+        nxtDisplayTextLine(3, "magsensor= %d", sensorValue(Magnetic));
     }
 
     //ALV beeps 3 times
@@ -20,13 +24,14 @@ void findBeacon () {
     PlaySound (soundBeepBeep);
     PlaySound (soundBeepBeep);
 
-    //Drop bins
+
+		//driveStraight(-4);
+		//Drop bins
     dropBins();
-    wait1MSec (1000);
+    wait1Msec (1000);
 
     //Back up to original position
-    nMotorEncoderTarget[motorB] = getSLEncoderCount(-50);
-    motor[motorB] = -100;
+    driveStraight(-49 - counter);
 
     waitUntilStopped(motorB);
 }

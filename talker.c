@@ -1,5 +1,5 @@
 #define HEIGHT 5
-#define DEBUG 0
+#define DEBUG 1
 
 void coords(int height);
 void Read(int* x, int* y);
@@ -60,6 +60,9 @@ void coords(int height) {
 		if (errors[0] || errors[1] || errors[2]) {
 			Read(&(coordinates[0]), &(coordinates[1]));
 			gotCoords = true;
+			if (errors[2]) {
+				gotCoords = false;
+			}
 			nxtDisplayTextLine(2, "x, y = %d, %d", coordinates[0], coordinates[1]);
 
 
@@ -113,10 +116,10 @@ void getPos(int * coords) {
 	gotCoords =  false;
 	while(!gotCoords) {
 		wait1Msec(20);
-		nxtDisplayTextLine(3, "Waiting to get position");
+		//nxtDisplayTextLine(3, "Waiting to get position");
 	}
 
-	nxtDisplayTextLine(4, "Got coordinates %d %d", coordinates[0], coordinates[1]);
+	//nxtDisplayTextLine(4, "Got coordinates %d %d", coordinates[0], coordinates[1]);
 	coords[0] = coordinates[0];
 	coords[1] = coordinates[1];
 }

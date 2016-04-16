@@ -1,6 +1,6 @@
-#include "init.c"
+#include "init.h"
 
-void dropBins();
+
 
 task main()
 {
@@ -20,13 +20,5 @@ task main()
 	 //wait1Msec(10000);
 	 waitUntilStopped(motorB);
 	 motor[motorB] = 0;
-
-}
-
-void dropBins () {
-  motor[motorA] = MOTOR_A_POWER;
-  wait1Msec(5000);
-  motor[motorA] = 0;
-
 
 }

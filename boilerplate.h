@@ -32,4 +32,6 @@ int getSpinEncoderCount(int degrees);
 
 void turnRight(int degrees);
 
+void dropBins();
+
 #endif

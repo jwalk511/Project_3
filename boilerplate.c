@@ -5,7 +5,7 @@
 //Allows testing of low-level functions
 #if RUN_MAIN
 task main () {
-		nSyncedMotors = synchBC;
+	nSyncedMotors = synchBC;
     driveStraight(100);
     turnRight(90);
     turnRight(-90);

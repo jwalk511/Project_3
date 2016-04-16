@@ -2,19 +2,22 @@
 #include "init.h"
 #define DIST_TO_SEARCH 2
 void findBeacon();
+#define MAGNET_VALUE = 483
+
 
 task main() {
-		init();
-    driveStraight (50);
+	init();
+    driveStraight (50); //Drive straight for 50 cm
     findBeacon ();
 }
 
-    // Find beacons
+// Find beacons
 void findBeacon () {
-	int counter = 0;
-    while (sensorValue(Magnetic) <= 500) {
-        driveStraight (DIST_TO_SEARCH);
-        counter += DIST_TO_SEARCH;
+	
+    while (sensorValue(Magnetic) <= MAGNET_VALUE) { 
+    
+        //Drive straight for 2 cm until magnetic beacon is found
+        driveStraight (DIST_TO_SEARCH); 
         nxtDisplayTextLine(3, "magsensor= %d", sensorValue(Magnetic));
     }
 
@@ -24,14 +27,8 @@ void findBeacon () {
     PlaySound (soundBeepBeep);
     PlaySound (soundBeepBeep);
 
-
-		//driveStraight(-4);
-		//Drop bins
+    //Drop bins
     dropBins();
     wait1Msec (1000);
-
-    //Back up to original position
-    driveStraight(-49 - counter);
-
-    waitUntilStopped(motorB);
+    
 }

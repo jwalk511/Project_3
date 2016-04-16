@@ -18,11 +18,13 @@ static int prevDirection;
 static int prevVector[2];
 
 
-task talk()
-{
+task talk() {
+    //Flush buffer
 	sendMessage(0);
 	ClearMessage();
 
+    //Clear old message, read in new coords, and wait 5s forever
+    //In own task, so does not block others
 	while (1) {
 		ClearMessage();
 		coords(HEIGHT);
@@ -31,8 +33,13 @@ task talk()
 }
 
 void coords(int height) {
+    //Store retrieved error value
 	int error;
+    
+    //Count how long we've gone without a response
     int counter = 0;
+    
+    //Tell gui how long high beacon is off the ground
 	sendMessage(HEIGHT);
 
 	do {
@@ -41,28 +48,35 @@ void coords(int height) {
         if (counter > (5000 / 40)) {
             counter = 0;
             nxtDisplayTextLine(1, "Sending message");
-            wait1Msec(500);
+            //wait1Msec(500);
             sendMessage(HEIGHT);
         }
 
 		error = messageParm[0];
 		if (error == 0) {
 			nxtDisplayTextLine(1, "Waiting for message");
-			wait1Msec(50);
+			wait1Msec(20);
 			continue;
 		}
+        
+        //if error is not 0, send them off to be parsed
+        //May be more than 1 error
 		parseError(error);
-        if (DEBUG) {
+#if DEBUG
             printErrors();
-        }
+#endif
 
 		nxtDisplayTextLine(1, "%d", error);
+        
+        //If we got coords, this will be set to true. Otherwise, left false
+        gotCoords = false;
 		if (errors[0] || errors[1] || errors[2]) {
 			Read(&(coordinates[0]), &(coordinates[1]));
-			gotCoords = true;
-			if (errors[2]) {
-				gotCoords = false;
-			}
+            
+            //Signify whether or not we go valid coords
+			gotCoords = (!errors[2]) && true;
+
+            //Display coordinates
 			nxtDisplayTextLine(2, "x, y = %d, %d", coordinates[0], coordinates[1]);
 
 
@@ -82,15 +96,17 @@ void coords(int height) {
 #endif
 
 		}
-	} while (error == 0);
+	} while (error == 0);   //Keep going until we get a message
 }
 
+//Store x and y coordinates, then delete input buffer
 void Read(int* x, int* y) {
 	*x = messageParm[1];
 	*y = messageParm[2];
 	ClearMessage();
 }
 
+//Go through error as a bunch of bits
 void parseError(int error) {
 	int i = 0;
 	errors[i] = (error & errorFlags[i]) << i; i++;
@@ -101,6 +117,7 @@ void parseError(int error) {
 	errors[i] = (error & errorFlags[i]) << i; i++;
 }
 
+//Print all errors
 void printErrors() {
 	int i = 1;
 	nxtDisplayTextLine(1 + i, "Error %d = %d", i, errors[i++]);
@@ -109,9 +126,10 @@ void printErrors() {
 	nxtDisplayTextLine(1 + i, "Error %d = %d", i, errors[i++]);
 	nxtDisplayTextLine(1 + i, "Error %d = %d", i, errors[i++]);
 	nxtDisplayTextLine(1 + i, "Error %d = %d", i, errors[i++]);
-	wait1Msec(1000);
+	//wait1Msec(1000);
 }
 
+//Block until new coords have come through
 void getPos(int * coords) {
 	gotCoords =  false;
 	while(!gotCoords) {
@@ -124,6 +142,7 @@ void getPos(int * coords) {
 	coords[1] = coordinates[1];
 }
 
+//Get 2D vector from origin of where we face
 void getDirectionVector(int* x, int* y) {
 	int delX = coordinates[0] - prevCoordinates[0];
 	int delY = coordinates[0] - prevCoordinates[0];
@@ -138,6 +157,7 @@ void getDirectionVector(int* x, int* y) {
 	}
 }
 
+//Get angle from x axis
 int getDirection() {
 	int delX, delY;
 	getDirectionVector(&delX, &delY);

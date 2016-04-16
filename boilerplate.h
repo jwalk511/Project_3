@@ -5,10 +5,11 @@
 
 #define RUN_MAIN 0
 
-//Use with
+//Use with motor synching
 #define DRIVE_STRAIGHT +100
 #define SPIN_CLOCKWISE -100
 
+//How many ticks motor b needs to turn to make 1 rotation
 #define ENCODER_COUNT_PER_ROTATION 1945
 
 //Ticks per Rotation(motor) * (Rotations(motor) / rotations(wheel)) * (Rotations(wheel) / Circumference)

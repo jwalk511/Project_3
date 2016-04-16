@@ -3,6 +3,7 @@
 
 void init();
 
+//Includes everything
 #include "boilerplate.c"
 #include "talker.c"
 #include "init.c"

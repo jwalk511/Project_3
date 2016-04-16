@@ -8,17 +8,18 @@
 
 //#include <stdio.h>
 
-//#include "init.h"
-//testbreak
+
+//Always call first in main method
 void init() {
+    //Reset all counts
 	resetCount(motorA);
 	resetCount(motorB);
 	resetCount(motorC);
+    
     //Slave C to B
     nSyncedMotors = synchBC;
-    //nSyncedTurnRatio = DRIVE_STRAIGHT;
+    
+    //Start bluetooth talker
     startTask(talk);
     wait1Msec(100);
-
-
 }

@@ -15,8 +15,12 @@
 //Ticks per Rotation(motor) * (Rotations(motor) / rotations(wheel)) * (Rotations(wheel) / Circumference)
 //= Ticks / Distance Travelled
 //Best experimental guess = 2000
-#define ENCODER_COUNT_PER_CM (360 * 40 / (24 * 100 * 0.255))
+#define ENCODER_COUNT_PER_MM (360 * 40 / (24 * 100 * 0.255 * 10)) 
 //we still need to figure this out
+
+#define DIST_TO_SEARCH 1
+#define MAGNET_VALUE 483
+#define MAX_DRIVE 10
 
 //reset tick count to 0
 void resetCount (int motorNum);
@@ -34,5 +38,9 @@ int getSpinEncoderCount(int degrees);
 void turnRight(int degrees);
 
 void dropBins();
+
+void findBeacon();
+
+void driveUntilBeacon(int maxDrive, int distToSearch);
 
 #endif

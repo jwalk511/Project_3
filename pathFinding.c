@@ -16,17 +16,13 @@ task main()
 	int xC = 277;
 	int yC = 55;
 	
-	int xTerrain1 = ?;
+	int xTerrain1 = 285;
 	
 	int xTerrain2 = 220;
-
-	
-	int xHome = ?;
-	int yHome = ?;
 	
 	bool foundBeacon = FALSE;
 	
-	
+	 
 	//turnRight (0);          // face north
     //turnRight (-45)        // face north east
     //turnRight(-90);       // face east
@@ -158,7 +154,7 @@ task main()
     	wait1Msec (1000);
     }
     
-    // If couldn't find beacon, move back to B and drop bins off
+    // If couldn't find beacon, move back to C and drop bins off
     else {
     	getPos (coor);
     	dist = xC - coor[0];
@@ -169,10 +165,9 @@ task main()
         wait1Msec (1000);
     }
 
-	
-    
-    
-    // Go back to home base
 
+    // Go back to home base
+    driveStraight (220);
+    wait1Msec(1000);
     
 }

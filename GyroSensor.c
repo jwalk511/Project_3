@@ -48,6 +48,7 @@ task main {
 	startTask(gyro);
 	wait1Msec(700);
 	while(true) {
+
 		float gyro = getGyro();
 		nxtDisplayTextLine(2, "%f", gyro);
 		wait10Msec(500);

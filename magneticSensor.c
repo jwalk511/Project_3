@@ -1,13 +1,17 @@
 #pragma config(Sensor, S1, Magnetic, sensorAnalog)
-#define MAGNET_VALUE 483
+#define MAGNET_VALUE 480
+
+int i = 0;
 
 task main () {
-    while (sensorValue(Magnetic) < MAGNET_VALUE) {
-        printf ("Magnetic sensor value: %f\n", sensorValue(Magnetic)();
+    while (i < 10) {
+    	  nxtDisplayTextLine(2, "Magnetic sensor:");
+        nxtDisplayCenteredBigTextLine(4, "%.2f", sensorValue(Magnetic));
+        wait1Msec(1000);
         nVolume = 2;
         PlaySound (soundBeepBeep);
-        PlaySound (soundBeepBeep);
-        PlaySound (soundBeepBeep);
         wait1Msec(1000);
+        i = i++;
     }
-        
+
+}

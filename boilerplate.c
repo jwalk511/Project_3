@@ -1,5 +1,5 @@
-//#pragma config(Sensor, S4, sonarSensor, sensorSonar)
-#pragma config(Sensor, S1, Magnetic, sensorAnalog)
+#pragma config(Sensor, S4, sonarSensor, sensorSonar)
+//#pragma config(Sensor, S1, Magnetic, sensorAnalog)
 #include "boilerplate.h"
 
 //RUN_MAIN defined in boilerplate.h
@@ -17,7 +17,7 @@ task main () {
 
 //Returns number of ticks motorB should travel
 int getSLEncoderCount (int distance) {
-   return distance * ENCODER_COUNT_PER_MM;
+   return distance * ENCODER_COUNT_PER_CM;
 }
 
 // Encoder counts for degree rotation
@@ -28,22 +28,22 @@ int getSpinEncoderCount(int degrees) {
 
 //Moves the motor forward for the specified number of centimeters
 void driveStraight(int distance) {
-    
+
     //Reset encoder count to zero so we just have to move to
     resetCount(motorB);
-    
+
     //make motors b and c move at the same rate
     nSyncedTurnRatio = DRIVE_STRAIGHT;
-    
+
     //Set target distance for motor b
     nMotorEncoderTarget[motorB] = getSLEncoderCount(distance);
-    
+
     //Turn motor b on, give negative power for negative distance
     motor[motorB] = 30 * sgn(distance);
-    
+
     //Do nothing until motor b has finished moving
     waitUntilStopped(motorB);
-    
+
     //Wait 20 ms to let robot settle.
     wait1Msec(20);
 }
@@ -82,20 +82,20 @@ void dropBins () {
 
 // Find beacons
 void findBeacon () {
-	bool foundBeacon = FALSE;
+	bool foundBeacon = false;
 
     driveUntilBeacon (MAX_DRIVE, DIST_TO_SEARCH);
 
     //If ALV couldn't find beacon, go back once more
-    if (foundBeacon = FALSE) {
+    if (foundBeacon == false) {
     	driveUntilBeacon (-MAX_DRIVE, - DIST_TO_SEARCH);
 
     	//Go forward to find beacon once more if still couldn't find it
-    	if (foundBeacon = FALSE) {
+    	if (foundBeacon == false) {
     		driveUntilBeacon (MAX_DRIVE, DIST_TO_SEARCH);
 
     		//Go to next location to still couldn't find beacon
-    		if (foundBeacon = FALSE){
+    		if (foundBeacon == false){
 				// Go to B/C
 
     		}
@@ -118,7 +118,7 @@ void findBeacon () {
 
 //Drive until finding beacons
 void driveUntilBeacon (int maxDrive, int distToSearch) {
-    bool foundBeacon = FALSE;
+    bool foundBeacon = false;
 
     //Reset encoder count to zero
     resetCount (motorB);
@@ -128,7 +128,7 @@ void driveUntilBeacon (int maxDrive, int distToSearch) {
 
     nMotorEncoderTarget[motorB] = getSLEncoderCount(maxDrive);
 
-    while (sensorValue(Magnetic) < MAGNET_VALUE) {
+    while (SensorValue(Magnetic) < MAGNET_VALUE) {
     	motor[motorB] = 30 * sgn(distToSearch);
 
     	if (abs(nMotorEncoder[motorB]) > abs(nMotorEncoderTarget[motorB])) {
@@ -137,11 +137,11 @@ void driveUntilBeacon (int maxDrive, int distToSearch) {
 
     }
 
-    if (sensorValue(Magnetic) < MAGNET_VALUE) {
-        foundBeacon = FALSE;
+    if (SensorValue(Magnetic) < MAGNET_VALUE) {
+        foundBeacon = false;
     }
     else {
-        foundBeacon = TRUE;
+        foundBeacon = true;
     }
 
     motor[motorB] = 0;

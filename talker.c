@@ -35,10 +35,10 @@ task talk() {
 void coords(int height) {
     //Store retrieved error value
 	int error;
-    
+
     //Count how long we've gone without a response
     int counter = 0;
-    
+
     //Tell gui how long high beacon is off the ground
 	sendMessage(HEIGHT);
 
@@ -58,7 +58,7 @@ void coords(int height) {
 			wait1Msec(20);
 			continue;
 		}
-        
+
         //if error is not 0, send them off to be parsed
         //May be more than 1 error
 		parseError(error);
@@ -67,12 +67,12 @@ void coords(int height) {
 #endif
 
 		nxtDisplayTextLine(1, "%d", error);
-        
+
         //If we got coords, this will be set to true. Otherwise, left false
         gotCoords = false;
 		if (errors[0] || errors[1] || errors[2]) {
 			Read(&(coordinates[0]), &(coordinates[1]));
-            
+
             //Signify whether or not we go valid coords
 			gotCoords = (!errors[2]) && true;
 
@@ -101,8 +101,8 @@ void coords(int height) {
 
 //Store x and y coordinates, then delete input buffer
 void Read(int* x, int* y) {
-	*x = messageParm[1];
-	*y = messageParm[2];
+	*x = messageParm[1] / 10;
+	*y = messageParm[2] / 10;
 	ClearMessage();
 }
 

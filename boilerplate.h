@@ -1,7 +1,7 @@
 #ifndef boilerplate
 #define boilerplate
 //#include "init.h"
-#define MOTOR_A_POWER 17
+#define MOTOR_A_POWER 10
 
 #define RUN_MAIN 0
 
@@ -15,7 +15,7 @@
 //Ticks per Rotation(motor) * (Rotations(motor) / rotations(wheel)) * (Rotations(wheel) / Circumference)
 //= Ticks / Distance Travelled
 //Best experimental guess = 2000
-#define ENCODER_COUNT_PER_MM (360 * 40 / (24 * 100 * 0.255 * 10)) 
+#define ENCODER_COUNT_PER_CM (360 * 40 / (24 * 100 * 0.255))
 //we still need to figure this out
 
 #define DIST_TO_SEARCH 1

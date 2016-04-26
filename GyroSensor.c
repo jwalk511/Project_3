@@ -1,6 +1,6 @@
 // TO DO: calibrate offset
 
-const tSensors GyroSensor = (tSensors) S1;   // gyro sensor
+const tSensors GyroSensor = (tSensors) S2;   // gyro sensor
 #define RUNMAIN 1
 #define LIMIT 4
 float Gyro_value;
@@ -16,13 +16,13 @@ task gyro()
 	offset = findOffset();
 	Gyro_value = 0;
 	while(true) {
-  	Gyro_value += (SensorValue(GyroSensor) - offset) * (1.0/50.0);  //read the gyro sensor
+  	Gyro_value = (SensorValue(GyroSensor) - offset) * (1.0/50.0);  //read the gyro sensor
   	wait1Msec(20);
   }
 }
 
 float getGyro() {
-	return (-1 * Gyro_value);
+	return (Gyro_value);
 }
 
 void resetGyro() {
@@ -50,8 +50,11 @@ task main {
 	while(true) {
 
 		float gyro = getGyro();
-		nxtDisplayTextLine(2, "%f", gyro);
+		nxtDisplayTextLine(2, "gyro = %f", gyro);
 		wait10Msec(500);
+
+		//motor[motorA] = 10;
+		//while(getGyro() >
 	}
 }
 

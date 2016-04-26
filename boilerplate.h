@@ -3,14 +3,12 @@
 //#include "init.h"
 #define MOTOR_A_POWER 10
 
-#define RUN_MAIN 0
-
 //Use with motor synching
 #define DRIVE_STRAIGHT +100
 #define SPIN_CLOCKWISE -100
 
 //How many ticks motor b needs to turn to make 1 rotation
-#define ENCODER_COUNT_PER_ROTATION 1945
+#define ENCODER_COUNT_PER_ROTATION 1944
 
 //Ticks per Rotation(motor) * (Rotations(motor) / rotations(wheel)) * (Rotations(wheel) / Circumference)
 //= Ticks / Distance Travelled
@@ -19,8 +17,8 @@
 //we still need to figure this out
 
 #define DIST_TO_SEARCH 1
-#define MAGNET_VALUE 483
-#define MAX_DRIVE 10
+#define MAGNET_VALUE 475
+#define MAX_DRIVE 25
 
 //reset tick count to 0
 void resetCount (int motorNum);
@@ -39,8 +37,8 @@ void turnRight(int degrees);
 
 void dropBins();
 
-void findBeacon();
+bool findBeacon();
 
-void driveUntilBeacon(int maxDrive, int distToSearch);
+bool driveUntilBeacon(int maxDrive, int distToSearch);
 
 #endif

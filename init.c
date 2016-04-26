@@ -15,11 +15,11 @@ void init() {
 	resetCount(motorA);
 	resetCount(motorB);
 	resetCount(motorC);
-    
-    //Slave C to B
-    nSyncedMotors = synchBC;
-    
+
+  //Slave C to B
+  nSyncedMotors = synchBC;
+
     //Start bluetooth talker
-    startTask(talk);
-    wait1Msec(100);
+  startTask(talk);
+  wait1Msec(100);
 }

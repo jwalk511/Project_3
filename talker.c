@@ -1,5 +1,5 @@
-#define HEIGHT 5
-#define DEBUG 1
+#define HEIGHT 200//mm
+#define DEBUG 0
 
 void coords(int height);
 void Read(int* x, int* y);
@@ -47,14 +47,14 @@ void coords(int height) {
         counter++;
         if (counter > (5000 / 40)) {
             counter = 0;
-            nxtDisplayTextLine(1, "Sending message");
+            //nxtDisplayTextLine(1, "Sending message");
             //wait1Msec(500);
             sendMessage(HEIGHT);
         }
 
 		error = messageParm[0];
 		if (error == 0) {
-			nxtDisplayTextLine(1, "Waiting for message");
+			//nxtDisplayTextLine(1, "Waiting for message");
 			wait1Msec(20);
 			continue;
 		}
@@ -66,7 +66,7 @@ void coords(int height) {
             printErrors();
 #endif
 
-		nxtDisplayTextLine(1, "%d", error);
+		//nxtDisplayTextLine(1, "%d", error);
 
         //If we got coords, this will be set to true. Otherwise, left false
         gotCoords = false;
@@ -77,7 +77,7 @@ void coords(int height) {
 			gotCoords = (!errors[2]) && true;
 
             //Display coordinates
-			nxtDisplayTextLine(2, "x, y = %d, %d", coordinates[0], coordinates[1]);
+			//nxtDisplayTextLine(2, "x, y = %d, %d", coordinates[0], coordinates[1]);
 
 
 #if DEBUG

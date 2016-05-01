@@ -1,11 +1,14 @@
 #ifndef init_h
 #define init_h
 
+//Includes everything
+#include "boilerplate.c"
+#include "talker.c"
+
+
 void init();
 
-#include "boilerplate.c"
 #include "init.c"
-#include "talker.c"
 
 //
 #endif
